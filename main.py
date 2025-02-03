@@ -8,9 +8,11 @@ def convert_all_pdfs(input_folder, output_folder):
     os.makedirs(output_folder, exist_ok=True)
 
     # Get a list of all PDF files in the input folder
-    pdf_files = glob.glob(os.path.join(input_folder, '*.pdf'))
+    filepath = os.path.join(input_folder, '*.pdf')
+    pdf_files = glob.glob(filepath)
+    print(f"Found {len(pdf_files)} PDF files in '{filepath}'")
     if not pdf_files:
-        print(f"No PDF files found in '{input_folder}'")
+        print(f"No PDF files found in '{filepath}'")
         return
 
     # Process each PDF file found
@@ -30,8 +32,10 @@ def convert_all_pdfs(input_folder, output_folder):
 
 
 if __name__ == '__main__':
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    print(f"Project root directory: {dir_path}")
     # Define the input and output directories (relative to the project root)
-    input_folder = 'intput'
+    input_folder = 'input'
     output_folder = 'output'
 
     convert_all_pdfs(input_folder, output_folder)
